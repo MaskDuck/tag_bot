@@ -6,7 +6,8 @@ appid = environ['client_id']
 token = environ['token']
 guild = environ['guild_id']
 
-url = f"https://discord.com/api/v10/applications/{appid}/guilds/{guild}/commands/"
+url = f"https://discord.com/api/v8/applications/{appid}/guilds/{guild}/commands"
+
 
 headers = {"Authorization": f"Bot {token}"}
 
@@ -17,3 +18,4 @@ json = {
 }
 
 r = requests.post(url, headers=headers, json=json)
+print(r.status_code)
