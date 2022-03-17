@@ -22,7 +22,9 @@ appid = environ["client_id"]
 token = environ["token"]
 guild = environ["guild_id"]
 
-url: Final[str] = f"https://discord.com/api/v8/applications/{appid}/guilds/{guild}/commands"
+url: Final[
+    str
+] = f"https://discord.com/api/v8/applications/{appid}/guilds/{guild}/commands"
 mongo: MongoClient = MongoClient(environ["mongo"])["dev"]["storer"]
 
 maintainers: Final[list[int]] = [
@@ -67,7 +69,7 @@ async def handler():
                                         "style": 1,
                                         "label": "Tag Name",
                                         "max_length": 32,
-                                        "placeholder": "If you are editing a tag please give the tag name here."
+                                        "placeholder": "If you are editing a tag please give the tag name here.",
                                     }
                                 ],
                             },
@@ -81,7 +83,7 @@ async def handler():
                                         "label": "Tag Content",
                                         "max_length": 1999,
                                         "placeholder": "Leave this part as blank to delete this tag.",
-                                        "required": False
+                                        "required": False,
                                     }
                                 ],
                             },
@@ -102,23 +104,43 @@ async def handler():
                 return jsonify({"type": 4, "data": {"content": "pong"}})
             else:
                 existing_data = mongo.find_one({"_id": data["data"]["name"]})
-                return jsonify({"type": 4, "data": {"content": existing_data['content']}})
+                return jsonify(
+                    {"type": 4, "data": {"content": existing_data["content"]}}
+                )
         elif data["type"] == 5:
-            if data["data"]["custom_id"] == "TAG_Modal": 
-                existing_data = mongo.find_one({"_id": data['data']['components'][0]['components'][0]['value']})
+            if data["data"]["custom_id"] == "TAG_Modal":
+                existing_data = mongo.find_one(
+                    {"_id": data["data"]["components"][0]["components"][0]["value"]}
+                )
                 editing = False
                 if existing_data:
                     editing = True
                 if editing:
-                    mongo.update_one({"_id": data['data']['components'][0]['components'][0]['value']}, {"$set": {
-                        "content": data['data']['components'][1]['components'][0]['value']
-                    }})
+                    mongo.update_one(
+                        {
+                            "_id": data["data"]["components"][0]["components"][0][
+                                "value"
+                            ]
+                        },
+                        {
+                            "$set": {
+                                "content": data["data"]["components"][1]["components"][
+                                    0
+                                ]["value"]
+                            }
+                        },
+                    )
                     return jsonify({"type": 4, "data": {"content": "Tag updated."}})
                 else:
-                    insert_data = {"_id": data['data']['components'][0]['components'][0]['value'], "content": data['data']['components'][1]['components'][0]['value']}
+                    insert_data = {
+                        "_id": data["data"]["components"][0]["components"][0]["value"],
+                        "content": data["data"]["components"][1]["components"][0][
+                            "value"
+                        ],
+                    }
                     mongo.insert_one(insert_data)
                     json = {
-                        "name": data['data']['components'][0]['components'][0]['value'],
+                        "name": data["data"]["components"][0]["components"][0]["value"],
                         "type": 1,
                         "description": "custom tag",
                     }
@@ -131,7 +153,7 @@ async def handler():
                                 "content": f"Created a tag with name {data['data']['components'][0]['components'][0]['value']} and content {data['data']['components'][1]['components'][0]['value']}. To edit the tag please contact MaskDuck."
                             },
                         }
-                 )
+                    )
 
 
 if __name__ == "__main__":
