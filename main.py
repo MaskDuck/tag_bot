@@ -79,11 +79,11 @@ async def handler():
                                     {
                                         "type": 4,
                                         "custom_id": "TAG_Modal_Content",
-                                        "style": 1,
+                                        "style": 2,
                                         "label": "Tag Content",
                                         "max_length": 1999,
                                         "placeholder": "Leave this part as blank to delete this tag.",
-                                        "required": False,
+                                        "required": False
                                     }
                                 ],
                             },
