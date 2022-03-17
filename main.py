@@ -12,7 +12,7 @@ if debug:
     from dotenv import load_dotenv
     load_dotenv()
 
-app: Flask = Flask(__name__)
+app= Flask(__name__)
 public_key: str = environ['public_key']
 verify_key: VerifyKey = VerifyKey(bytes.fromhex(public_key))
 
