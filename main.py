@@ -40,7 +40,7 @@ async def handler():
             return jsonify({"type": 1})
         elif data["type"] == 2:
             if data['data']['name'] == "tag":
-                if data['member']['user']['id'] in maintainers:
+                if int(data['member']['user']['id']) in maintainers:
                     modal = {
                         "title": "New Tag",
                         "custom_id": "TAG_Modal",
