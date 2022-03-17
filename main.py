@@ -21,7 +21,7 @@ verify_key: VerifyKey = VerifyKey(bytes.fromhex(public_key))
 
 maintainers: list[str] = [716134528409665586, 911987862981972058, 763767239018938368, 730358289849778186, 488802888928329753]
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 async def handler():
     verified = False
     # validating signatures
