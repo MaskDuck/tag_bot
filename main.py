@@ -72,7 +72,7 @@ async def handler():
         elif data["type"] == 5:
             if data['data']['custom_id'] == "TAG_Modal":
                 # TODO: add tag handler
-                return f"tag_name: {data['data']['components'][0]['components'][0]['value']}, tag_value: {data['data']['components'][1]['components'][1]['value']}"
+                return f"tag_name: {data['data']['components'][0]['components'][0]['value']}, tag_value: {data['data']['components'][1]['components'][0]['value']}"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
