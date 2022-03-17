@@ -19,7 +19,7 @@ verify_key: VerifyKey = VerifyKey(bytes.fromhex(public_key))
 
 # mongo: MongoClient = MongoClient(environ['mongo'])["dev"]["storer"]
 
-maintainers: list[str] = [716134528409665586, 911987862981972058, 763767239018938368, 730358289849778186, 488802888928329753]
+maintainers: list[int] = [716134528409665586, 911987862981972058, 763767239018938368, 730358289849778186, 488802888928329753]
 
 @app.route("/", methods=["POST"])
 async def handler():
