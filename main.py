@@ -33,7 +33,7 @@ async def handler():
         verified: bool = True
     except BadSignatureError:
         verified: bool = False
-        return Response(status=403)
+        return Response(status=401)
     if verified:
         data: dict = request.get_json()
         if data["type"] == 1:
