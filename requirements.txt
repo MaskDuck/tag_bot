@@ -2,3 +2,4 @@ flask
 PyNaCl
 requests
 flask[async]
+pymongo
