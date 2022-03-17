@@ -71,8 +71,8 @@ async def handler():
                 return jsonify({"type": 4, "data": {"content": "pong"}})
         elif data["type"] == 5:
             if data['data']['custom_id'] == "TAG_Modal":
-                # TODO: add tag handler
-                return f"tag_name: {data['data']['components'][0]['components'][0]['value']}, tag_value: {data['data']['components'][1]['components'][0]['value']}"
+                return jsonify({"type": 4, "data": {"content": f"tag_name: {data['data']['components'][0]['components'][0]['value']}, tag_value: {data['data']['components'][1]['components'][0]['value']}"}})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
