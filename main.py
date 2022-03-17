@@ -57,10 +57,10 @@ async def handler():
                             "type": 1,
                             "components": [{
                                 "type": 4,
-                                "custom_id": "TAG_Modal_Name",
+                                "custom_id": "TAG_Modal_Content",
                                 "style": 1,
-                                "label": "Tag Name",
-                                "max_length": 32
+                                "label": "Tag Content",
+                                "max_length": 1999
                             }]
                         }]
                     }
