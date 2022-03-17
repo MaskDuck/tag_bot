@@ -61,7 +61,7 @@ async def handler():
                             }
                         ]
                     }
-                    return jsonify({"type": 9, "data": jsonify(modal)})
+                    return jsonify({"type": 9, "data": modal})
                 else:
                     return jsonify({"type": 4, "data": {"content": "You do not have permission to use this command.", "flags": 1 << 6}})
             elif data['data']['name'] == "ping":
