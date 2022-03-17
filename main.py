@@ -65,7 +65,7 @@ async def handler():
                 else:
                     return jsonify({"type": 4, "data": {"content": "You do not have permission to use this command.", "flags": 1 << 6}})
             elif data['data']['name'] == "ping":
-                return jsonify({"type": 4, "data": {"content": "pong"}}, status=403)
+                return jsonify({"type": 4, "data": {"content": "pong"}})
         elif data["type"] == 5:
             if data['data']['custom_id'] == "TAG_Modal":
                 # TODO: add tag handler
