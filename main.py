@@ -44,22 +44,25 @@ async def handler():
                     modal = {
                         "title": "New Tag",
                         "custom_id": "TAG_Modal",
-                        "components": [
-                            {
+                        "components": [{
+                            "type": 1,
+                            "components": [{
                                 "type": 4,
                                 "custom_id": "TAG_Modal_Name",
                                 "style": 1,
                                 "label": "Tag Name",
                                 "max_length": 32
-                            },
-                            {
+                            }]
+                        },{
+                            "type": 1,
+                            "components": [{
                                 "type": 4,
-                                "custom_id": "TAG_Modal_Content",
+                                "custom_id": "TAG_Modal_Name",
                                 "style": 1,
-                                "label": "Tag Content",
-                                "max_length": 1999
-                            }
-                        ]
+                                "label": "Tag Name",
+                                "max_length": 32
+                            }]
+                        }]
                     }
                     return jsonify({"type": 9, "data": modal})
                 else:
