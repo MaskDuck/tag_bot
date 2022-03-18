@@ -83,7 +83,7 @@ async def handler():
                                         "label": "Tag Content",
                                         "max_length": 1999,
                                         "placeholder": "Leave this part as blank to delete this tag.",
-                                        "required": False
+                                        "required": False,
                                     }
                                 ],
                             },
@@ -113,6 +113,23 @@ async def handler():
                     {"_id": data["data"]["components"][0]["components"][0]["value"]}
                 )
                 editing = False
+                if data["data"]["components"][1]["components"][0]["value"] is "":
+                    mongo.delete_one(
+                        {"_id": data["data"]["components"][0]["components"][0]["value"]}
+                    )
+                    commands = requests.get(url).json()
+                    command_to_delete = [
+                        command
+                        for command in commands
+                        if command["name"]
+                        == data["data"]["components"][0]["components"][0]["value"]
+                    ][0]
+                    requests.delete(
+                        url,
+                        headers={"Authorization": f"Bot {token}"},
+                        json=command_to_delete,
+                    )
+                    return jsonify({"type": 4, "data": {"content": "Tag deleted."}})
                 if existing_data:
                     editing = True
                 if editing:
