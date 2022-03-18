@@ -122,10 +122,10 @@ async def handler():
                     for command in commands:
                         if command["name"] == data["data"]["components"][0]["components"][0]["value"]:
                             command_to_delete = command
+                    id = command_to_delete['id']
                     requests.delete(
-                        f"{url}/{command_to_delete['id']}",
-                        headers={"Authorization": f"Bot {token}"},
-                        json=command_to_delete,
+                        f"{url}/{id}",
+                        headers={"Authorization": f"Bot {token}"}
                     )
                     return jsonify({"type": 4, "data": {"content": "Tag deleted."}})
                 if existing_data:
