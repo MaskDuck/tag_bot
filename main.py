@@ -118,14 +118,11 @@ async def handler():
                         {"_id": data["data"]["components"][0]["components"][0]["value"]}
                     )
                     commands = requests.get(url).json()
-                    command_to_delete = [
-                        command
-                        for command in commands
-                        if command["name"]
-                        == data["data"]["components"][0]["components"][0]["value"]
-                    ][0]
+                    for command in commands:
+                        if command["name"] == data["data"]["components"][0]["components"][0]["value"]:
+                            command_to_delete = command
                     requests.delete(
-                        url,
+                        f"{url}/{command_to_delete['id']}",
                         headers={"Authorization": f"Bot {token}"},
                         json=command_to_delete,
                     )
