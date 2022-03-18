@@ -117,8 +117,8 @@ async def handler():
                     mongo.delete_one(
                         {"_id": data["data"]["components"][0]["components"][0]["value"]}
                     )
-                    headers={"Authorization": f"Bot {token}"},
-                    commands = requests.get(url, headers=headers).json()
+                    
+                    commands = requests.get(url, headers={"Authorization": f"Bot {token}"}).json()
                     for command in commands:
                         if command["name"] == data["data"]["components"][0]["components"][0]["value"]:
                             command_to_delete = command
