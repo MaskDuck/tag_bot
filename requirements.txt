@@ -4,3 +4,4 @@ requests
 flask[async]
 pymongo
 pymongo[srv]
+python-dotenv

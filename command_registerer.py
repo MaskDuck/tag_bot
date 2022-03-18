@@ -5,6 +5,10 @@ import requests
 
 from os import environ
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 appid = environ["client_id"]
 token = environ["token"]
 guild = environ["guild_id"]
