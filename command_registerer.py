@@ -22,6 +22,14 @@ json = {
     "name": "tag",
     "type": 1,
     "description": "[MAINTAINER ONLY] new tag, or edit a existing tag.",
+    "permissions": [
+        {
+            "id": "830875873027817484",
+            "type": 1,
+            "permission": True
+        }
+    ],
+    "default_permission": False
 }
 
 r = requests.post(url, headers=headers, json=json)
