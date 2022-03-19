@@ -102,6 +102,23 @@ async def handler():
                     )
             elif data["data"]["name"] == "ping":
                 return jsonify({"type": 4, "data": {"content": "pong"}})
+            elif data["data"]["name"] == "load_tag":
+                for cmd in mongo.find():
+                    json = {
+                        "name": cmd['_id'],
+                        "type": 1,
+                        "description": "custom tag",
+                    }
+                    headers = {"Authorization": f"Bot {token}"}
+                    requests.post(url, headers=headers, json=json)
+                return jsonify(
+                        {
+                            "type": 4,
+                            "data": {
+                                "content": f"Loaded these tag:\n{' '.join([cmd])}"
+                            },
+                        }
+                    )
             else:
                 existing_data = mongo.find_one({"_id": data["data"]["name"]})
                 return jsonify(
