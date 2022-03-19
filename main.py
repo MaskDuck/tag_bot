@@ -115,7 +115,7 @@ async def handler():
                         {
                             "type": 4,
                             "data": {
-                                "content": f"Loaded these tag:\n{' '.join([cmd])}"
+                                "content": f"Loaded."
                             },
                         }
                     )
